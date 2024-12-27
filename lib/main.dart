@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hospital/agregarMedicamento.dart';
 import 'package:flutter_hospital/rutaAntibioticos.dart';
 import 'package:flutter_hospital/vistaCategorias.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => VistaCategorias(),
         "/rutaAntibioticos": (context) => RutaAntibioticos(),
+        "/rutaAgregarMedicamento": (context) => RutaAgregarMedicamento(),
       },
     );
   }

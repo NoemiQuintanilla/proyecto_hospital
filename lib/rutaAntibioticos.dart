@@ -21,7 +21,7 @@ class RutaAntibioticos extends StatelessWidget {
         onPressed: () {
           // Acción al presionar el botón
           Navigator.pushNamed(
-              context, '/rutaAgregar'); // Cambia a tu ruta deseada
+              context, '/rutaAgregarMedicamento'); // Cambia a tu ruta deseada
         },
         backgroundColor: const Color(0xFF254754), // Color del botón
         child: const Icon(Icons.add,
