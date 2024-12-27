@@ -51,10 +51,16 @@ class VistaCategorias extends StatelessWidget {
                 '/rutaAntipireticos'),
             _buildListCard(
                 context,
-                'assets/images/imagen6.png',
-                'Antipiréticos',
-                'Administra antipiréticos',
-                '/rutaAntipireticos'),
+                'assets/images/imagen4.png',
+                'Antidepresivos',
+                'Administra antidepresivos',
+                '/rutaAntidepresivos'),
+            _buildListCard(
+                context,
+                'assets/images/imagen5.png',
+                'Antialérgicos',
+                'Administra antialérgicos',
+                '/rutaAntialergicos'),
             _buildListCard(
                 context,
                 'assets/images/imagen6.png',
@@ -63,6 +69,16 @@ class VistaCategorias extends StatelessWidget {
                 '/rutaAntipireticos'),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Acción al presionar el botón
+          Navigator.pushNamed(
+              context, '/rutaAgregar'); // Cambia a tu ruta deseada
+        },
+        backgroundColor: const Color(0xFF254754), // Color del botón
+        child: const Icon(Icons.add,
+            color: Colors.white, size: 32), // Icono del botón
       ),
     );
   }

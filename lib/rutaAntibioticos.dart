@@ -17,6 +17,16 @@ class RutaAntibioticos extends StatelessWidget {
         ),
         backgroundColor: const Color(0xFF254754),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Acción al presionar el botón
+          Navigator.pushNamed(
+              context, '/rutaAgregar'); // Cambia a tu ruta deseada
+        },
+        backgroundColor: const Color(0xFF254754), // Color del botón
+        child: const Icon(Icons.add,
+            color: Colors.white, size: 32), // Icono del botón
+      ),
     );
   }
 }
