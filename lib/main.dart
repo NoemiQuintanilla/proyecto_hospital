@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hospital/agregarMedicamento.dart';
-import 'package:flutter_hospital/rutaAntibioticos.dart';
-import 'package:flutter_hospital/vistaCategorias.dart';
+import 'package:flutter_hospital/views/rutaAntibioticos.dart';
+import 'package:flutter_hospital/views/vistaCategorias.dart';
 
 void main() {
   runApp(MyApp());
