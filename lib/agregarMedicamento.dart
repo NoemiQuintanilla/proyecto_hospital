@@ -17,6 +17,33 @@ class RutaAgregarMedicamento extends StatelessWidget {
         ),
         backgroundColor: const Color(0xFF254754),
       ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Nombre del Medicamento',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Dosis',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                // Lógica para agregar medicamento
+              },
+              child: const Text('Agregar'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
