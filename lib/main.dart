@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hospital/agregarMedicamento.dart';
-import 'package:flutter_hospital/rutaAntibioticos.dart';
-import 'package:flutter_hospital/vistaCategorias.dart';
+import 'package:flutter_hospital/views/agregarMedicamento.dart';
+import 'package:flutter_hospital/views/rutaAntibioticos.dart';
+import 'package:flutter_hospital/views/vistaCategorias.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Aplicacion',
+      title: 'Aplicacion de hospital',
       initialRoute: "/ ",
       routes: {
         "/": (context) => VistaCategorias(),
