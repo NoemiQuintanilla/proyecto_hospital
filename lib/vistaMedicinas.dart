@@ -29,7 +29,7 @@ class MedicineList extends StatelessWidget {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No medicines found'));
+            return const Center(child: Text('No mediciness found'));
           } else {
             return Padding(
               padding: const EdgeInsets.all(16.0),
