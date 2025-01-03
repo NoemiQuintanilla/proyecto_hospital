@@ -1,180 +1,193 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hospital/database_helper.dart';
+import 'package:flutter_hospital/vistaMedicinas.dart';
 
-class VistaCategorias extends StatelessWidget {
-  const VistaCategorias({super.key});
+class CategoryList extends StatefulWidget {
+  @override
+  _CategoryListState createState() => _CategoryListState();
+}
+
+class _CategoryListState extends State<CategoryList> {
+  final dbHelper = DatabaseHelper();
+  List<Map<String, dynamic>> _categories = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCategories();
+  }
+
+  Future<void> _loadCategories() async {
+    final data = await dbHelper.getCategories();
+    setState(() {
+      _categories = data;
+      isLoading = false;
+    });
+  }
+
+  Future<void> _deleteCategory(int categoryId) async {
+    await dbHelper.deleteCategory(categoryId);
+    _loadCategories();
+  }
+
+  void _editCategory(int categoryId) {
+    // Navegar a una pantalla de edición (implementarla según sea necesario)
+    print("Editar categoría ID: $categoryId");
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Categorías Medicamentos"),
-        centerTitle: true,
-        titleTextStyle: const TextStyle(
-          color: Color.fromARGB(255, 255, 255, 255), // Color del texto
-          fontSize: 20, // Tamaño de la fuente
-          fontWeight: FontWeight.bold, // Grosor de la fuente
-          fontFamily: 'Roboto', // Familia de la fuente
+        title: const Text(
+          "Categorías Medicamentos",
+          textAlign: TextAlign.center,
         ),
-        backgroundColor: const Color(0xFF254754),
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFF142e38),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        decoration: const BoxDecoration(
+          color: Color.fromRGBO(241, 244, 249, 0.5),
+          border: Border(
+            top: BorderSide(
+              color: Color.fromRGBO(30, 31, 32, 0.5),
+            ),
+          ),
+        ),
         child: Column(
           children: [
-            // Buscador (TextField)
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Buscar categoría',
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Color(0xFF49b6c7)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Color(0xFF49b6c7)),
-                ),
-              ),
-              onChanged: (text) {
-                // Aquí agregarías la lógica para filtrar las tarjetas
-                // con base en el texto ingresado en el buscador
-              },
-            ),
-            const SizedBox(height: 16), // Espacio entre el buscador y la lista
-            Expanded(
-              child: ListView(
+            // Filtro de búsqueda
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _buildListCard(
-                      context,
-                      'assets/images/imagen1.png',
-                      'Antibióticos',
-                      'Administra antibióticos',
-                      '/rutaAntibioticos'),
-                  _buildListCard(
-                      context,
-                      'assets/images/imagen2.png',
-                      'Analgésicos',
-                      'Administra analgésicos',
-                      '/rutaAnalgesicos'),
-                  _buildListCard(
-                      context,
-                      'assets/images/imagen3.png',
-                      'Antiinflamatorios',
-                      'Administra antiinflamatorios',
-                      '/rutaAntiinflamatorios'),
-                  _buildListCard(
-                      context,
-                      'assets/images/imagen4.png',
-                      'Antidepresivos',
-                      'Administra antidepresivos',
-                      '/rutaAntidepresivos'),
-                  _buildListCard(
-                      context,
-                      'assets/images/imagen5.png',
-                      'Antialérgicos',
-                      'Administra antialérgicos',
-                      '/rutaAntialergicos'),
-                  _buildListCard(
-                      context,
-                      'assets/images/imagen6.png',
-                      'Antipiréticos',
-                      'Administra antipiréticos',
-                      '/rutaAntipireticos'),
+                  SizedBox(
+                    height: 45,
+                    width: 300,
+                    child: TextField(
+                      textCapitalization: TextCapitalization.words,
+                      autocorrect: true,
+                      cursorColor: const Color.fromARGB(255, 105, 103, 103),
+                      decoration: const InputDecoration(
+                        fillColor: Color.fromRGBO(216, 242, 245, 1),
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                        hintText: 'Buscar categoría ...',
+                        hintStyle: TextStyle(
+                          color: Color.fromRGBO(87, 99, 108, 0.5),
+                          fontSize: 14,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Material(
+                      color: const Color.fromRGBO(37, 71, 84, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: SizedBox(
+                        height: 40,
+                        width: 40,
+                        child: IconButton(
+                          icon: const Icon(Icons.search_sharp, size: 24, color: Colors.white),
+                          onPressed: () {
+                            // Acción para buscar categorías
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
+            ),
+            // Lista de Categorías
+            Expanded(
+              child: isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : _categories.isEmpty
+                      ? const Center(child: Text('No hay categorías disponibles'))
+                      : ListView.builder(
+                          itemCount: _categories.length,
+                          itemBuilder: (context, index) {
+                            final category = _categories[index];
+                            return Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Card(
+                                elevation: 4,
+                                color: const Color.fromRGBO(216, 242, 245, 1),
+                                child: ListTile(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            MedicineList(categoryId: category['id']),
+                                      ),
+                                    );
+                                  },
+                                  leading: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: category['imageUrl'] != null
+                                        ? Image.asset(
+                                            'assets/images/${category['imageUrl']}',
+                                            width: 50,
+                                            height: 50,
+                                            fit: BoxFit.cover,
+                                          )
+                                        : const Icon(
+                                            Icons.image_not_supported,
+                                            size: 50,
+                                            color: Color.fromARGB(255, 236, 236, 236),
+                                          ),
+                                  ),
+                                  title: Text(
+                                    category['name'],
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  trailing: SizedBox(
+                                    width: 100,
+                                    child: Row(
+                                      children: [
+                                        IconButton(
+                                          icon: const Icon(Icons.edit, color: Colors.amber, size: 30),
+                                          onPressed: () => _editCategory(category['id']),
+                                        ),
+                                        IconButton(
+                                          icon: const Icon(Icons.delete, color: Colors.red, size: 30),
+                                          onPressed: () => _deleteCategory(category['id']),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Acción al presionar el botón
-          Navigator.pushNamed(
-              context, '/rutaAgregar'); // Cambia a tu ruta deseada
+          // Acción para agregar nueva categoría
         },
-        backgroundColor: const Color(0xFF254754), // Color del botón
-        child: const Icon(Icons.add,
-            color: Colors.white, size: 32), // Icono del botón
-      ),
-    );
-  }
-
-  // Función para crear una tarjeta en formato de lista
-  Widget _buildListCard(BuildContext context, String imagePath, String title,
-      String subtitle, String routeName) {
-    return Card(
-      elevation: 4, // Sombra de la tarjeta
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10), // Bordes redondeados
-      ),
-      color: const Color.fromARGB(
-          255, 208, 249, 255), // Color de fondo de la tarjeta
-      child: ListTile(
-        onTap: () {
-          Navigator.pushNamed(context, routeName); // Navegación a otra ruta
-        },
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Image.asset(
-            imagePath,
-            fit: BoxFit.cover,
-            width: 48,
-            height: 48,
-          ),
-        ),
-        title: Text(
-          title,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        subtitle: Text(subtitle),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min, // Ajusta el ancho al contenido
-          children: [
-            IconButton(
-              icon: const Icon(Icons.edit,
-                  color: Color.fromARGB(255, 251, 255, 35)),
-              onPressed: () {
-                // Acción de editar
-                Navigator.pushNamed(context,
-                    '/rutaEditar'); // Cambia la ruta según sea necesario
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.delete, color: Colors.red),
-              onPressed: () {
-                // Acción de eliminar
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Confirmar eliminación'),
-                      content: const Text(
-                          '¿Estás seguro de que quieres eliminar esta categoría?'),
-                      actions: <Widget>[
-                        TextButton(
-                          child: const Text('Cancelar'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        TextButton(
-                          child: const Text('Eliminar'),
-                          onPressed: () {
-                            // Lógica de eliminación
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-            ),
-          ],
-        ),
+        backgroundColor: const Color.fromRGBO(37, 71, 84, 1),
+        child: const Icon(Icons.add, color: Colors.white),
       ),
     );
   }
