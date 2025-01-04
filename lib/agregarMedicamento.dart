@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class RutaAgregarMedicamento extends StatelessWidget {
-  const RutaAgregarMedicamento({super.key});
+class AgregarMedicamento extends StatelessWidget {
+  const AgregarMedicamento({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,33 +16,6 @@ class RutaAgregarMedicamento extends StatelessWidget {
           fontFamily: 'Roboto', // Familia de la fuente
         ),
         backgroundColor: const Color(0xFF254754),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Nombre del Medicamento',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Dosis',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                // Lógica para agregar medicamento
-              },
-              child: const Text('Agregar'),
-            ),
-          ],
-        ),
       ),
     );
   }
