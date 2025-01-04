@@ -167,8 +167,7 @@ class VistaCategorias extends StatelessWidget {
           mainAxisSize: MainAxisSize.min, // Ajusta el ancho al contenido
           children: [
             IconButton(
-              icon: const Icon(Icons.edit,
-                  color: Color.fromARGB(255, 251, 255, 35)),
+              icon: const Icon(Icons.edit, color: Colors.amber, size: 30),
               onPressed: () {
                 // Acción de editar
                 Navigator.pushNamed(context,

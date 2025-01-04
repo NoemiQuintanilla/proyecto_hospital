@@ -52,6 +52,13 @@ class _MedicineListState extends State<MedicineList> {
     });
   }
 
+  // Función para eliminar un medicamento
+  void _eliminarMedicamento(int index) {
+    setState(() {
+      _medicines.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -192,7 +199,36 @@ class _MedicineListState extends State<MedicineList> {
                                           icon: Icon(Icons.delete,
                                               color: Colors.red, size: 30),
                                           onPressed: () {
-                                            // Acción para eliminar
+                                            // Confirmación antes de eliminar
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                      'Confirmar eliminación'),
+                                                  content: Text(
+                                                      '¿Estás seguro de que deseas eliminar este medicamento?'),
+                                                  actions: [
+                                                    TextButton(
+                                                      child: Text('Cancelar'),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    ),
+                                                    TextButton(
+                                                      child: Text('Eliminar'),
+                                                      onPressed: () {
+                                                        _eliminarMedicamento(
+                                                            index);
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
                                           },
                                         ),
                                       ],
