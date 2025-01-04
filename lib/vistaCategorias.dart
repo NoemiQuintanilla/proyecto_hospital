@@ -22,23 +22,57 @@ class VistaCategorias extends StatelessWidget {
         child: Column(
           children: [
             // Buscador (TextField)
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Buscar categoría',
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Color(0xFF49b6c7)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Color(0xFF49b6c7)),
-                ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 45,
+                    width: 300,
+                    child: TextField(
+                      textCapitalization: TextCapitalization.words,
+                      autocorrect: true,
+                      cursorColor: Color.fromARGB(255, 105, 103, 103),
+                      decoration: InputDecoration(
+                        fillColor: Color.fromRGBO(216, 242, 245, 1),
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                        hintText: 'Buscar medicina ...',
+                        hintStyle: TextStyle(
+                          color: Color.fromRGBO(87, 99, 108, 0.5),
+                          fontSize: 14,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Material(
+                      color: Color.fromRGBO(37, 71, 84, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: SizedBox(
+                        height: 40,
+                        width: 40,
+                        child: IconButton(
+                          icon: Icon(Icons.search_sharp,
+                              size: 24, color: Colors.white),
+                          onPressed: () {
+                            // Acción para buscar medicinas (aún no implementada)
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              onChanged: (text) {
-                // Aquí agregarías la lógica para filtrar las tarjetas
-                // con base en el texto ingresado en el buscador
-              },
             ),
             const SizedBox(height: 16), // Espacio entre el buscador y la lista
             Expanded(
@@ -107,8 +141,7 @@ class VistaCategorias extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10), // Bordes redondeados
       ),
-      color: const Color.fromARGB(
-          255, 215, 243, 255), // Color de fondo de la tarjeta
+      color: Color.fromRGBO(216, 242, 245, 1), // Color de fondo de la tarjeta
       child: ListTile(
         onTap: () {
           Navigator.pushNamed(context, routeName); // Navegación a otra ruta

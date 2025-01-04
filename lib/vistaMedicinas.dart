@@ -11,7 +11,8 @@ class MedicineList extends StatefulWidget {
 }
 
 class _MedicineListState extends State<MedicineList> {
-  List<Map<String, dynamic>> _medicines = []; // Lista de medicamentos de ejemplo
+  List<Map<String, dynamic>> _medicines =
+      []; // Lista de medicamentos de ejemplo
   bool isLoading = false;
 
   @override
@@ -69,11 +70,6 @@ class _MedicineListState extends State<MedicineList> {
         margin: EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
           color: Color.fromRGBO(241, 244, 249, 0.5),
-          border: Border(
-            top: BorderSide(
-              color: Color.fromRGBO(30, 31, 32, 0.5),
-            ),
-          ),
         ),
         child: Column(
           children: [
@@ -118,7 +114,8 @@ class _MedicineListState extends State<MedicineList> {
                         height: 40,
                         width: 40,
                         child: IconButton(
-                          icon: Icon(Icons.search_sharp, size: 24, color: Colors.white),
+                          icon: Icon(Icons.search_sharp,
+                              size: 24, color: Colors.white),
                           onPressed: () {
                             // Acción para buscar medicinas (aún no implementada)
                           },
@@ -140,25 +137,29 @@ class _MedicineListState extends State<MedicineList> {
                           itemBuilder: (context, index) {
                             var medicine = _medicines[index];
                             return Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
                               child: Card(
                                 elevation: 3, // Añadir sombra a la tarjeta
                                 color: Color.fromRGBO(216, 242, 245, 1),
                                 child: ListTile(
                                   leading: Icon(
-                                    Icons.medical_services, 
-                                    size: 50, 
+                                    Icons.medical_services,
+                                    size: 50,
                                     color: Colors.blue,
                                   ),
                                   title: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
                                       medicine['name'],
-                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600),
                                     ),
                                   ),
                                   subtitle: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "Descripción: ${medicine['description']}",
@@ -181,13 +182,15 @@ class _MedicineListState extends State<MedicineList> {
                                     child: Row(
                                       children: [
                                         IconButton(
-                                          icon: Icon(Icons.edit, color: Colors.amber, size: 30),
+                                          icon: Icon(Icons.edit,
+                                              color: Colors.amber, size: 30),
                                           onPressed: () {
                                             // Acción para editar
                                           },
                                         ),
                                         IconButton(
-                                          icon: Icon(Icons.delete, color: Colors.red, size: 30),
+                                          icon: Icon(Icons.delete,
+                                              color: Colors.red, size: 30),
                                           onPressed: () {
                                             // Acción para eliminar
                                           },
