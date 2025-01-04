@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hospital/agregarCategoria.dart';
 import 'package:flutter_hospital/agregarMedicamento.dart';
 import 'package:flutter_hospital/vistaCategorias.dart';
 import 'package:flutter_hospital/vistaMedicinas.dart';
@@ -16,7 +17,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => VistaCategorias(),
-        '/vistaMedicinas': (context) => MedicineList(categoryId: 1), // Asegúrate de pasar el categoryId correcto
+        '/agregarCategoria': (context) => AgregarCategoria(),
+        '/vistaMedicinas': (context) => MedicineList(
+            categoryId: 1), // Asegúrate de pasar el categoryId correcto
         '/agregarMedicamento': (context) => MedicamentoNuevo(),
       },
     );
