@@ -17,7 +17,7 @@ class _MedicineListState extends State<MedicineList> {
   @override
   void initState() {
     super.initState();
-    _cargarMedicinas(); // Cargar las medicinas al iniciar la pantalla
+    _cargarMedicinas(); // Cargar las medicinas al iniciar a pantalla
   }
 
   // Cargar medicinas estáticas (sin base de datos)
