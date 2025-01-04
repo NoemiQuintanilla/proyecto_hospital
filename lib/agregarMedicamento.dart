@@ -71,7 +71,17 @@ class _MedicamentoNuevoState extends State<MedicamentoNuevo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Nuevo Medicamento')),
+      appBar: AppBar(
+        title: const Text("Nuevo Medicamento"),
+        centerTitle: true,
+        titleTextStyle: const TextStyle(
+          color: Colors.white, // Color del texto
+          fontSize: 20, // Tamaño de la fuente
+          fontWeight: FontWeight.bold, // Grosor de la fuente
+          fontFamily: 'Roboto', // Familia de la fuente
+        ),
+        backgroundColor: const Color(0xFF254754),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -150,10 +160,69 @@ class _MedicamentoNuevoState extends State<MedicamentoNuevo> {
                   ],
                 ),
                 const SizedBox(height: 16),
-                // Ya no hay imagenes ni selección de imágenes
-                ElevatedButton(
-                  onPressed: _guardarMedicamento,
-                  child: const Text('Guardar Medicamento'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 140, // Reduce el tamaño del botón Guardar
+                      child: ElevatedButton(
+                        onPressed: _guardarMedicamento,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(Icons.save, color: Colors.white, size: 20),
+                            SizedBox(width: 8),
+                            Text(
+                              "Guardar ",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(73, 182, 199, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 8), // Reduce el padding
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    SizedBox(
+                      width: 140, // Reduce el tamaño del botón Cancelar
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(Icons.cancel, color: Colors.white, size: 20),
+                            SizedBox(width: 8),
+                            Text(
+                              "Cancelar",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 8), // Reduce el padding
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

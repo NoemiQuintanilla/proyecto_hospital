@@ -17,7 +17,7 @@ class _MedicineListState extends State<MedicineList> {
   @override
   void initState() {
     super.initState();
-    _cargarMedicinas(); // Cargar las medicinas al iniciar a pantalla
+    _cargarMedicinas(); // Cargar las medicinas al iniciar la pantalla
   }
 
   // Cargar medicinas estáticas (sin base de datos)
@@ -44,13 +44,26 @@ class _MedicineListState extends State<MedicineList> {
     });
   }
 
+  // Función para agregar un nuevo medicamento a la lista
+  void _agregarMedicamento(Map<String, dynamic> nuevoMedicamento) {
+    setState(() {
+      _medicines.add(nuevoMedicamento);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("LISTADO DE MEDICINAS", textAlign: TextAlign.center),
-        backgroundColor: const Color(0xFF142e38),
-        automaticallyImplyLeading: false,
+        title: const Text("Listado de Medicinas"),
+        centerTitle: true,
+        titleTextStyle: const TextStyle(
+          color: Colors.white, // Color del texto
+          fontSize: 20, // Tamaño de la fuente
+          fontWeight: FontWeight.bold, // Grosor de la fuente
+          fontFamily: 'Roboto', // Familia de la fuente
+        ),
+        backgroundColor: const Color(0xFF254754),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 10),
@@ -192,13 +205,19 @@ class _MedicineListState extends State<MedicineList> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          // Esperar el resultado de la pantalla de agregar medicamento
+          final nuevoMedicamento = await Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => MedicamentoNuevo(),
             ),
           );
+
+          // Si se recibe un nuevo medicamento, agregarlo a la lista
+          if (nuevoMedicamento != null) {
+            _agregarMedicamento(nuevoMedicamento);
+          }
         },
         child: Icon(Icons.add), // Ícono de agregar
       ),
