@@ -208,21 +208,14 @@ class _MedicineListState extends State<MedicineList> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          // Esperar el resultado de la pantalla de agregar medicamento
-          final nuevoMedicamento = await Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => MedicamentoNuevo(),
-            ),
-          );
-
-          // Si se recibe un nuevo medicamento, agregarlo a la lista
-          if (nuevoMedicamento != null) {
-            _agregarMedicamento(nuevoMedicamento);
-          }
+        onPressed: () {
+          // Acción al presionar el botón
+          Navigator.pushNamed(
+              context, '/agregarMedicamento'); // Cambia a tu ruta deseada
         },
-        child: Icon(Icons.add), // Ícono de agregar
+        backgroundColor: const Color(0xFF254754), // Color del botón
+        child: const Icon(Icons.add,
+            color: Colors.white, size: 32), // Icono del botón
       ),
     );
   }
