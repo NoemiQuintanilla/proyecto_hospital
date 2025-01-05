@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hospital App',
       theme: ThemeData(primarySwatch: Colors.blue),
-      initialRoute: '/',
+      initialRoute: '/vistaMedicinas',
       routes: {
         '/': (context) => VistaCategorias(),
         '/agregarCategoria': (context) => AgregarCategoria(),

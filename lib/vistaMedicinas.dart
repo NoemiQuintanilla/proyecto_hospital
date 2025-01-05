@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hospital/editarMedicamento.dart';
 import 'agregarMedicamento.dart'; // Para la pantalla de agregar medicamento
 
 class MedicineList extends StatefulWidget {
@@ -193,6 +194,22 @@ class _MedicineListState extends State<MedicineList> {
                                               color: Colors.amber, size: 30),
                                           onPressed: () {
                                             // Acción para editar
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    EditarMedicamento(
+                                                  medicamento: medicine,
+                                                  actualizarMedicamento:
+                                                      (medicamentoActualizado) {
+                                                    setState(() {
+                                                      _medicines[index] =
+                                                          medicamentoActualizado; // Actualizar el medicamento
+                                                    });
+                                                  },
+                                                ),
+                                              ),
+                                            );
                                           },
                                         ),
                                         IconButton(
