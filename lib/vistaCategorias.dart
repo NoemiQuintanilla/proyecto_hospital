@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class VistaCategorias extends StatelessWidget {
   const VistaCategorias({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -171,7 +170,7 @@ class VistaCategorias extends StatelessWidget {
               onPressed: () {
                 // Acción de editar
                 Navigator.pushNamed(context,
-                    '/rutaEditar'); // Cambia la ruta según sea necesario
+                    '/editarCategoria'); // Cambia la ruta según sea necesario
               },
             ),
             IconButton(
