@@ -187,7 +187,8 @@ class _MedicamentoNuevoState extends State<MedicamentoNuevo> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          padding: const EdgeInsets.symmetric(vertical: 8), // Reduce el padding
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8), // Reduce el padding
                         ),
                       ),
                     ),
@@ -218,7 +219,8 @@ class _MedicamentoNuevoState extends State<MedicamentoNuevo> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          padding: const EdgeInsets.symmetric(vertical: 8), // Reduce el padding
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8), // Reduce el padding
                         ),
                       ),
                     ),
