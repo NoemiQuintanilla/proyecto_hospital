@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hospital/agregarCategoria.dart';
-import 'package:flutter_hospital/agregarMedicamento.dart';
-import 'package:flutter_hospital/editarCategoria.dart';
-import 'package:flutter_hospital/vistaCategorias.dart';
-import 'package:flutter_hospital/vistaMedicinas.dart';
+import 'package:flutter_hospital/categorias/agregarCategoria.dart';
+import 'package:flutter_hospital/categorias/agregarMedicamento.dart';
+import 'package:flutter_hospital/categorias/editarCategoria.dart';
+import 'package:flutter_hospital/categorias/vistaCategorias.dart';
+import 'package:flutter_hospital/categorias/vistaMedicinas.dart';
 
 void main() {
   runApp(MyApp());

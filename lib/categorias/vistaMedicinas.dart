@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hospital/editarMedicamento.dart';
+import 'package:flutter_hospital/categorias/editarMedicamento.dart';
 import 'agregarMedicamento.dart'; // Para la pantalla de agregar medicamento
 
 class MedicineList extends StatefulWidget {
